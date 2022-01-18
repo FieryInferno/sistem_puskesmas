@@ -61,18 +61,10 @@
                     </a>
                   </div>
                 </li>
-                <li class="nav-item dropdown">
-                  <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <li class="nav-item">
+                  <a class="nav-link" href="/admin/user">
                     <span class="nav-link-text text-white">Manajemen User</span>
                   </a>
-                  <div class="dropdown-menu  dropdown-menu-right ">
-                    <a href="/admin/maintenance" class="dropdown-item">
-                      <span>Data Maintenance</span>
-                    </a>
-                    <a href="/admin/maintenance/history" class="dropdown-item">
-                      <span>History Maintenance</span>
-                    </a>
-                  </div>
                 </li>
                 @break
               @case('pasien')
