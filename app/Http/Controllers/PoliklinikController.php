@@ -58,8 +58,12 @@ class PoliklinikController extends Controller
     return redirect('/admin/poliklinik')->with('status', 'Berhasil edit poliklinik.');
   }
 
-    public function destroy($id)
-    {
-        //
-    }
+  public function destroy($id)
+  {
+    $poliklinik = $this->poliklinik->find($id);
+
+    $poliklinik->delete();
+    
+    return redirect('/admin/poliklinik')->with('sukses', 'Berhasil edit poliklinik.');
+  }
 }

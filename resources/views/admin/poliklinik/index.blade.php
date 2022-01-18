@@ -39,9 +39,9 @@
                 <td>
                   <a href="/admin/poliklinik/edit/{{ $poliklinik->id }}" class="btn btn-success btn-sm">Edit</a>
                   <!-- Button trigger modal -->
-                  <!-- <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#hapus{{ $poliklinik->id }}">
+                  <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#hapus{{ $poliklinik->id }}">
                     Hapus
-                  </button> -->
+                  </button>
 
                   <!-- Modal -->
                   <div class="modal fade" id="hapus{{ $poliklinik->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -54,7 +54,7 @@
                           </button>
                         </div>
                         <div class="modal-body">
-                          Anda yakin akan menghapus data poliklinik dengan nama {{ $poliklinik->nama }}?
+                          Anda yakin akan menghapus data poliklinik dengan nama {{ $poliklinik->poli }}?
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
