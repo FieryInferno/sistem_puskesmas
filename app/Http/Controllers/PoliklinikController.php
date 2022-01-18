@@ -37,47 +37,27 @@ class PoliklinikController extends Controller
 
     return redirect('/admin/poliklinik')->with('status', 'Berhasil tambah poliklinik.');
   }
+  
+  public function edit($id)
+  {
+    $poliklinik = $this->poliklinik->find($id);
+    return view('admin/poliklinik/edit', $poliklinik);
+  }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+  public function update(Request $request, $id)
+  {
+    $poliklinik_baru = $this->poliklinik->find($id);
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
+    $poliklinik_baru->no_sip       = $request->no_sip;
+    $poliklinik_baru->poli         = $request->poli;
+    $poliklinik_baru->dokter       = $request->dokter;
+    $poliklinik_baru->ketersediaan = $request->ketersediaan;
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+    $poliklinik_baru->save();
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    return redirect('/admin/poliklinik')->with('status', 'Berhasil edit poliklinik.');
+  }
+
     public function destroy($id)
     {
         //

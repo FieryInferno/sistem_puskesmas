@@ -37,7 +37,7 @@
                 <td>{{ $poliklinik->dokter }}</td>
                 <td>{{ $poliklinik->ketersediaan }}</td>
                 <td>
-                  <!-- <a href="/admin/poliklinik/edit/{{ $poliklinik->id }}" class="btn btn-success btn-sm">Edit</a> -->
+                  <a href="/admin/poliklinik/edit/{{ $poliklinik->id }}" class="btn btn-success btn-sm">Edit</a>
                   <!-- Button trigger modal -->
                   <!-- <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#hapus{{ $poliklinik->id }}">
                     Hapus
