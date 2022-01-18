@@ -3,34 +3,42 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
-class User extends Controller
+class UserController extends Controller
 {
+  private $user;
+
+  public function __construct()
+  {
+    $this->user = new User;
+  }
+
   public function index()
   {
     return view("admin/user/index");
   }
+  
+  public function create()
+  {
+    return view("admin/user/create");
+  }
+  
+  public function store(Request $request)
+  {
+    $this->user->no_induk = $request->no_induk;
+    $this->user->nama     = $request->nama;
+    $this->user->username = $request->username;
+    $this->user->password = Hash::make($request->password);
+    $this->user->jabatan  = $request->jabatan;
+    $this->user->no_telp  = $request->no_telp;
+    $this->user->role     = $request->role;
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+    $this->user->save();
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+    return redirect('/admin/user')->with('status', 'Berhasil tambah user.');
+  }
 
     /**
      * Display the specified resource.
