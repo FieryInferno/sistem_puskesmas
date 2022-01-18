@@ -24,7 +24,7 @@
             </div>
             <div class="form-group">
               <label class="form-control-label" for="input-username">Ketersediaan</label>
-              <select name="role" id="role" class="mySelect2" required>
+              <select name="ketersediaan" id="ketersediaan" class="mySelect2" required>
                 <option selected disabled></option>
                 <option value="tersedia">Tersedia</option>
                 <option value="tidak_tersedia">Tidak Tersedia</option>

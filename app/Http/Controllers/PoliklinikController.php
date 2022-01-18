@@ -25,17 +25,18 @@ class PoliklinikController extends Controller
   {
     return view("admin/poliklinik/create");
   }
+  
+  public function store(Request $request)
+  {
+    $this->poliklinik->no_sip       = $request->no_sip;
+    $this->poliklinik->poli         = $request->poli;
+    $this->poliklinik->dokter       = $request->dokter;
+    $this->poliklinik->ketersediaan = $request->ketersediaan;
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+    $this->poliklinik->save();
+
+    return redirect('/admin/poliklinik')->with('status', 'Berhasil tambah poliklinik.');
+  }
 
     /**
      * Display the specified resource.
