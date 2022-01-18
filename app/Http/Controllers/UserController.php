@@ -17,7 +17,8 @@ class UserController extends Controller
 
   public function index()
   {
-    return view("admin/user/index");
+    $data["user"] = $this->user->all();
+    return view("admin/user/index", $data);
   }
   
   public function create()
