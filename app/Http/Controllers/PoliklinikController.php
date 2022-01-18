@@ -20,16 +20,11 @@ class PoliklinikController extends Controller
     $data["poliklinik"] = $this->poliklinik->all();
     return view("admin/poliklinik/index", $data);
   }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+  
+  public function create()
+  {
+    return view("admin/poliklinik/create");
+  }
 
     /**
      * Store a newly created resource in storage.

@@ -6,7 +6,7 @@
       <h3>POLIKLINIK</h3>
     </div>
     <div class="card-body">
-      <a href="/admin/user/tambah" class="btn btn-primary mb-3">Tambah</a>
+      <a href="/admin/poliklinik/tambah" class="btn btn-primary mb-3">Tambah</a>
       @if (session('status'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
           {{ session('status') }}
