@@ -7,6 +7,7 @@
     </div>
     <form action="/admin/user/edit/{{ $id }}" method="post">
       @csrf
+      @method('PUT')
       <div class="card-body">
         <div class="row">
           <div class="col-lg-12">

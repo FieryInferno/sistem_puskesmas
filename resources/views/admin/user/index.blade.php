@@ -43,9 +43,9 @@
                 <td>
                   <a href="/admin/user/edit/{{ $user->id }}" class="btn btn-success btn-sm">Edit</a>
                   <!-- Button trigger modal -->
-                  <!-- <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#hapus{{ $user->id }}">
+                  <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#hapus{{ $user->id }}">
                     Hapus
-                  </button> -->
+                  </button>
 
                   <!-- Modal -->
                   <div class="modal fade" id="hapus{{ $user->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -62,7 +62,11 @@
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                          <a href="/admin/manajemen_user/hapus/{{ $user->id }}" class="btn btn-danger">Hapus</a>
+                          <form action="/admin/user/hapus/{{ $user->id }}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-danger" type="submit">Hapus</button>
+                          </form>
                         </div>
                       </div>
                     </div>
