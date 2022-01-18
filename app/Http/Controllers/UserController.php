@@ -40,40 +40,31 @@ class UserController extends Controller
 
     return redirect('/admin/user')->with('status', 'Berhasil tambah user.');
   }
+  
+  public function edit($id)
+  {
+    $user = $this->user->find($id);
+    return view('admin/user/edit', $user);
+  }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+  public function update(Request $request, $id)
+  {
+    $user_baru = $this->user->find($id);
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+    $user_baru->no_induk = $request->no_induk;
+    $user_baru->nama     = $request->nama;
+    $user_baru->username = $request->username;
+    if ($request->password) {
+      $user_baru->password = Hash::make($request->password);
     }
+    $user_baru->jabatan  = $request->jabatan;
+    $user_baru->no_telp  = $request->no_telp;
+    $user_baru->role     = $request->role;
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+    $user_baru->save();
+
+    return redirect('/admin/user')->with('status', 'Berhasil edit user.');
+  }
 
     /**
      * Remove the specified resource from storage.

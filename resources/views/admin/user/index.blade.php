@@ -41,7 +41,7 @@
                 <td>{{ $user->no_telp }}</td>
                 <td>{{ $user->role }}</td>
                 <td>
-                  <!-- <a href="/admin/manajemen_user/edit/{{ $user->id }}" class="btn btn-success">Edit</a> -->
+                  <a href="/admin/user/edit/{{ $user->id }}" class="btn btn-success btn-sm">Edit</a>
                   <!-- Button trigger modal -->
                   <!-- <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#hapus{{ $user->id }}">
                     Hapus

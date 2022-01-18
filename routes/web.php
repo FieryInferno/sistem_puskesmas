@@ -14,6 +14,8 @@ Route::middleware('auth')->group(function () {
       Route::get('/', [App\Http\Controllers\UserController::class, 'index']);
       Route::get('/tambah', [App\Http\Controllers\UserController::class, 'create']);
       Route::post('/tambah', [App\Http\Controllers\UserController::class, 'store']);
+      Route::get('/edit/{id}', [App\Http\Controllers\UserController::class, 'edit']);
+      Route::post('/edit/{id}', [App\Http\Controllers\UserController::class, 'update']);
     });
     });
   });
