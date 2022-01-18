@@ -44,7 +44,7 @@
             @switch(auth()->user()->role)
               @case('admin')
                 <li class="nav-item">
-                  <a class="nav-link" href="/admin/data_aset">
+                  <a class="nav-link" href="/admin/poliklinik">
                     <span class="nav-link-text text-white">Poliklinik</span>
                   </a>
                 </li>
