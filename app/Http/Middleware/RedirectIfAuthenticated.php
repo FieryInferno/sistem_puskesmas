@@ -19,14 +19,26 @@ class RedirectIfAuthenticated
      */
     public function handle(Request $request, Closure $next, ...$guards)
     {
-        $guards = empty($guards) ? [null] : $guards;
+      $guards = empty($guards) ? [null] : $guards;
 
-        foreach ($guards as $guard) {
-            if (Auth::guard($guard)->check()) {
-                return redirect(RouteServiceProvider::HOME);
-            }
+      foreach ($guards as $guard) {
+        if (Auth::guard($guard)->check()) {
+          switch (auth()->user()->role) {
+            case 'admin':
+              return redirect('admin');
+              break;
+    
+            case 'pasien':
+              return redirect('pasien');
+              break;
+            
+            default:
+              # code...
+              break;
+          }
         }
-
-        return $next($request);
+      }
+  
+      return $next($request);
     }
 }

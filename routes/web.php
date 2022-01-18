@@ -1,12 +1,15 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
-Route::get('/', [AuthenticatedSessionController::class, 'create']);
+Route::get('/', [App\Http\Controllers\Auth\AuthenticatedSessionController::class, 'create'])->middleware('guest');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::middleware('auth')->group(function () {
+  Route::middleware('is_admin')->group(function () {
+    Route::prefix('admin')->group(function () {
+      Route::get('/', [App\Http\Controllers\Admin::class, 'index']);
+    });
+  });
+});
 
 require __DIR__.'/auth.php';
