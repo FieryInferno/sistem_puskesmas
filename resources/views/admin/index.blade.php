@@ -41,7 +41,7 @@
       <div class="card">
         <div class="card-body text-center">
           Poli Tersedia<br>
-          <h1>10</h1>
+          <h1>{{ $poliklinik }}</h1>
           Lihat poli <a href="<?= auth()->user()->role == "admin" ? "admin" : "pasien"; ?>/poliklinik">Disini</a>
         </div>
       </div>
