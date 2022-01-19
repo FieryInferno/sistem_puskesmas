@@ -35,7 +35,7 @@
                 <td>{{ $poliklinik->no_sip }}</td>
                 <td>{{ $poliklinik->poli }}</td>
                 <td>{{ $poliklinik->dokter }}</td>
-                <td>{{ $poliklinik->ketersediaan }}</td>
+                <td>{{ $poliklinik->ketersediaan == "tersedia" ? "Tersedia" : "Tidak Tersedia" }}</td>
                 <td>
                   <a href="/admin/poliklinik/edit/{{ $poliklinik->id }}" class="btn btn-success btn-sm">Edit</a>
                   <!-- Button trigger modal -->
