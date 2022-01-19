@@ -56,5 +56,37 @@
       </div>
     </div>
   </div>
+  <div class="card">
+    <div class="card-header">
+      <button class="btn btn-primary" data-toggle="modal" data-target="#unggahPoster">Unggah Poster</button>
+      
+      <!-- Modal -->
+      <div class="modal fade" id="unggahPoster" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Unggah Poster</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <form action="admin/poster/tambah" method="post">
+              <div class="modal-body">
+                @csrf
+                <input type="file" class="form-control">
+              </div>
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-primary">Unggah Poster</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <button class="btn btn-danger">Hapus Poster</button>
+    </div>
+    <div class="card-body text-center">
+      <img src="{{ asset('img/poster.png') }}" class="fill-current text-gray-500" alt="">
+    </div>
+  </div>
 </div>
 @endsection
