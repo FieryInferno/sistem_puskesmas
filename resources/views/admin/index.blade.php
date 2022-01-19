@@ -85,12 +85,16 @@
         </div>
       </div>
       @if ($poster)
-        <button class="btn btn-danger">Hapus Poster</button>
+        <form action="/admin/poster/hapus/{{ $poster['id'] }}" method="post">
+          @csrf
+          @method('DELETE')
+          <button class="btn btn-danger" type="submit">Hapus Poster</button>
+        </form>
       @endif
     </div>
     <div class="card-body text-center">
       @if ($poster)
-        <img src="{{ asset('img/' . $poster) }}" class="fill-current text-gray-500" alt="">
+        <img src="{{ asset('img/' . $poster['poster']) }}" class="fill-current text-gray-500" alt="">
       @endif
     </div>
   </div>

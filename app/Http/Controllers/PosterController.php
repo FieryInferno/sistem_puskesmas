@@ -26,6 +26,10 @@ class PosterController extends Controller
   
   public function destroy($id)
   {
-      //
+    $poster = $this->poster->find($id);
+
+    $poster->delete();
+    
+    return back()->with('sukses', 'Berhasil hapus poster.');
   }
 }

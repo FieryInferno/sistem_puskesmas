@@ -72,6 +72,6 @@ class UserController extends Controller
 
     $user->delete();
     
-    return redirect('/admin/user')->with('sukses', 'Berhasil edit user.');
+    return redirect('/admin/user')->with('sukses', 'Berhasil hapus user.');
   }
 }

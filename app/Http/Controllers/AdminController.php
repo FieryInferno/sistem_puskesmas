@@ -16,7 +16,7 @@ class AdminController extends Controller
 
   public function index()
   {
-    $data = $this->poster->first();
+    $data["poster"] = $this->poster->first();
     return view("admin/index", $data);
   }
 }
