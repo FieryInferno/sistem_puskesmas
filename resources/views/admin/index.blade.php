@@ -70,10 +70,10 @@
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <form action="admin/poster/tambah" method="post">
+            <form action="admin/poster/tambah" method="post" enctype="multipart/form-data">
               <div class="modal-body">
                 @csrf
-                <input type="file" class="form-control">
+                <input type="file" class="form-control" name="poster">
               </div>
               <div class="modal-footer">
                 <button type="submit" class="btn btn-primary">Unggah Poster</button>

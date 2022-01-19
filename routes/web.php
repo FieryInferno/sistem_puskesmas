@@ -15,7 +15,6 @@ Route::middleware('auth')->group(function () {
         Route::post('/tambah', [App\Http\Controllers\UserController::class, 'store']);
         Route::get('/edit/{id}', [App\Http\Controllers\UserController::class, 'edit']);
         Route::put('/edit/{id}', [App\Http\Controllers\UserController::class, 'update']);
-        Route::post('/edit/{id}', [App\Http\Controllers\UserController::class, 'update']);
         Route::delete('/hapus/{id}', [App\Http\Controllers\UserController::class, 'destroy']);
       });
 
@@ -25,8 +24,12 @@ Route::middleware('auth')->group(function () {
         Route::post('/tambah', [App\Http\Controllers\PoliklinikController::class, 'store']);
         Route::get('/edit/{id}', [App\Http\Controllers\PoliklinikController::class, 'edit']);
         Route::put('/edit/{id}', [App\Http\Controllers\PoliklinikController::class, 'update']);
-        Route::post('/edit/{id}', [App\Http\Controllers\PoliklinikController::class, 'update']);
         Route::delete('/hapus/{id}', [App\Http\Controllers\PoliklinikController::class, 'destroy']);
+      });
+
+      Route::prefix('poster')->group(function () {
+        Route::post('/tambah', [App\Http\Controllers\PosterController::class, 'store']);
+        Route::delete('/hapus/{id}', [App\Http\Controllers\PosterController::class, 'destroy']);
       });
     });
   });
