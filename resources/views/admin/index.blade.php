@@ -58,7 +58,9 @@
   </div>
   <div class="card">
     <div class="card-header">
-      <button class="btn btn-primary" data-toggle="modal" data-target="#unggahPoster">Unggah Poster</button>
+      @if (!$poster)
+        <button class="btn btn-primary" data-toggle="modal" data-target="#unggahPoster">Unggah Poster</button>
+      @endif
       
       <!-- Modal -->
       <div class="modal fade" id="unggahPoster" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -82,10 +84,14 @@
           </div>
         </div>
       </div>
-      <button class="btn btn-danger">Hapus Poster</button>
+      @if ($poster)
+        <button class="btn btn-danger">Hapus Poster</button>
+      @endif
     </div>
     <div class="card-body text-center">
-      <img src="{{ asset('img/poster.png') }}" class="fill-current text-gray-500" alt="">
+      @if ($poster)
+        <img src="{{ asset('img/' . $poster) }}" class="fill-current text-gray-500" alt="">
+      @endif
     </div>
   </div>
 </div>
