@@ -118,7 +118,32 @@
                 </div>
               </div>
               <div class="col-9 text-right">
-                <a href="/admin/nilai/tambah" class="btn btn-danger mb-3 btn-sm">Hapus</a>
+                <a href="#" class="btn btn-danger mb-3 btn-sm" data-toggle="modal" data-target="#hapus{{ $nilai->id }}">Hapus</a>
+
+                <!-- Modal -->
+                <div class="modal fade" id="hapus{{ $nilai->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Hapus Penilaian</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <form action="/admin/nilai/hapus/{{ $nilai->id }}" method="post">
+                        @csrf
+                        @method("DELETE")
+                        <div class="modal-body text-left">
+                          Apakah anda akan menghapus penilaian ini?
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                          <button class="btn btn-danger" type="submit">Hapus</button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
