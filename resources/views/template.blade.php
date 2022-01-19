@@ -19,6 +19,82 @@
   <link rel="stylesheet" href="{{ asset('css') }}/argon.css?v=1.2.0" type="text/css">
   <link rel="stylesheet" href="//cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
   <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    .checked {
+      color: orange;
+    }
+  </style>
+
+  <!-- <style>
+    .rating {
+      display: inline-block;
+      position: relative;
+      height: 50px;
+      line-height: 50px;
+      font-size: 50px;
+    }
+
+    .rating label {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      cursor: pointer;
+    }
+
+    .rating label:last-child {
+      position: static;
+    }
+
+    .rating label:nth-child(1) {
+      z-index: 5;
+    }
+
+    .rating label:nth-child(2) {
+      z-index: 4;
+    }
+
+    .rating label:nth-child(3) {
+      z-index: 3;
+    }
+
+    .rating label:nth-child(4) {
+      z-index: 2;
+    }
+
+    .rating label:nth-child(5) {
+      z-index: 1;
+    }
+
+    .rating label input {
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+    }
+
+    .rating label .icon {
+      float: left;
+      color: transparent;
+    }
+
+    .rating label:last-child .icon {
+      color: #000;
+    }
+
+    .rating:not(:hover) label input:checked ~ .icon,
+    .rating:hover label:hover input ~ .icon {
+      color: #ffb300;
+    }
+
+    .rating label input:focus:not(:checked) ~ .icon:last-child {
+      color: #000;
+      text-shadow: 0 0 5px #ffb300;
+    }
+  </style> -->
 </head>
 
 <body>
@@ -48,18 +124,10 @@
                     <span class="nav-link-text text-white">Poliklinik</span>
                   </a>
                 </li>
-                <li class="nav-item dropdown">
-                  <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="nav-link-text text-white">Beri Nilai</span>
+                <li class="nav-item">
+                  <a class="nav-link" href="/admin/nilai">
+                    <span class="nav-link-text text-white">Beri NIlai</span>
                   </a>
-                  <div class="dropdown-menu  dropdown-menu-right ">
-                    <a href="/admin/pengadaan" class="dropdown-item">
-                      <span>Data Pengadaan</span>
-                    </a>
-                    <a href="/admin/pengadaan/history" class="dropdown-item">
-                      <span>History Pengadaan</span>
-                    </a>
-                  </div>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="/admin/user">
