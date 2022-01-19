@@ -35,7 +35,6 @@ Route::middleware('auth')->group(function () {
       Route::prefix('nilai')->group(function () {
         Route::get('/', [App\Http\Controllers\NilaiController::class, 'index']);
         Route::post('/tambah', [App\Http\Controllers\NilaiController::class, 'store']);
-        Route::get('/edit/{id}', [App\Http\Controllers\NilaiController::class, 'edit']);
         Route::put('/edit/{id}', [App\Http\Controllers\NilaiController::class, 'update']);
         Route::delete('/hapus/{id}', [App\Http\Controllers\NilaiController::class, 'destroy']);
       });

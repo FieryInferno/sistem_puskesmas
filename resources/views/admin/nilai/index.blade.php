@@ -90,7 +90,32 @@
           <div class="col-3">
             <div class="row">
               <div class="col-3">
-                <a href="/admin/nilai/tambah" class="btn btn-success mb-3 btn-sm">Edit</a>
+                <a href="#" class="btn btn-success mb-3 btn-sm" data-toggle="modal" data-target="#edit{{ $nilai->id }}">Edit</a>
+
+                <!-- Modal -->
+                <div class="modal fade" id="edit{{ $nilai->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Edit Penilaian</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <form action="/admin/nilai/edit/{{ $nilai->id }}" method="post">
+                        @csrf
+                        @method("PUT")
+                        <div class="modal-body">
+                          <input type="text" class="form-control" name="penilaian" placeholder="Masukan Penilaian" value="{{ $nilai->penilaian }}">
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                          <button class="btn btn-success" type="submit">Edit</button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
               </div>
               <div class="col-9 text-right">
                 <a href="/admin/nilai/tambah" class="btn btn-danger mb-3 btn-sm">Hapus</a>
