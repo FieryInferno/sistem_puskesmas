@@ -4,14 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Nilai;
+use App\Models\NilaiPasien;
 
 class NilaiController extends Controller
 {
   private $nilai;
+  private $nilaiPasien;
 
   public function __construct()
   {
-    $this->nilai = new Nilai;
+    $this->nilai        = new Nilai;
+    $this->nilaiPasien  = new NilaiPasien;
   }
 
   public function index()
@@ -54,5 +57,17 @@ class NilaiController extends Controller
     $nilai->delete();
     
     return back()->with('status', 'Berhasil hapus penilaian.');
+  }
+
+  public function storeRatingPasien(Request $request)
+  {
+    foreach ($request->nilai as $key => $value) {
+      $this->nilaiPasien->pasien_id = auth()->user()->id;
+      $this->nilaiPasien->nilai_id  = $key;
+      $this->nilaiPasien->nilai     = $value;
+      $this->nilaiPasien->save();
+    }
+
+    return back()->with("status", "Berhasil input penilaian.");
   }
 }
