@@ -26,9 +26,7 @@
     .checked {
       color: orange;
     }
-  </style>
-
-  <!-- <style>
+    
     .rating {
       display: inline-block;
       position: relative;
@@ -94,7 +92,7 @@
       color: #000;
       text-shadow: 0 0 5px #ffb300;
     }
-  </style> -->
+  </style>
 </head>
 
 <body>
@@ -126,7 +124,7 @@
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="/admin/nilai">
-                    <span class="nav-link-text text-white">Beri NIlai</span>
+                    <span class="nav-link-text text-white">Beri Nilai</span>
                   </a>
                 </li>
                 <li class="nav-item">
@@ -141,18 +139,10 @@
                     <span class="nav-link-text text-white">Poliklinik</span>
                   </a>
                 </li>
-                <li class="nav-item dropdown">
-                  <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <li class="nav-item">
+                  <a class="nav-link" href="/pasien/nilai">
                     <span class="nav-link-text text-white">Beri Nilai</span>
                   </a>
-                  <div class="dropdown-menu  dropdown-menu-right ">
-                    <a href="/laboran/pengadaan" class="dropdown-item">
-                      <span>Data Pengadaan</span>
-                    </a>
-                    <a href="/laboran/pengadaan/history" class="dropdown-item">
-                      <span>History Pengadaan</span>
-                    </a>
-                  </div>
                 </li>
                 @break
             @endswitch

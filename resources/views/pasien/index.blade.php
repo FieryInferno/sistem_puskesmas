@@ -51,7 +51,7 @@
         <div class="card-body text-center">
           Rating<br>
           <h1>4/5</h1>
-          Beri rating <a href="#" data-toggle="modal" data-target="#cetakAntrian">Disini</a>
+          Beri rating <a href="<?= auth()->user()->role == "admin" ? "admin" : "pasien"; ?>/nilai">Disini</a>
         </div>
       </div>
     </div>

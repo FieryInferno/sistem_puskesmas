@@ -17,7 +17,19 @@ class NilaiController extends Controller
   public function index()
   {
     $data["nilai"] = $this->nilai->all();
-    return view("admin/nilai/index", $data);
+
+    switch (auth()->user()->role) {
+      case 'admin':
+        return view("admin/nilai/index", $data);
+        break;
+      case 'pasien':
+        return view("pasien/nilai/index", $data);
+        break;
+      
+      default:
+        # code...
+        break;
+    }
   }
   
   public function store(Request $request)
