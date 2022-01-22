@@ -28,21 +28,23 @@ class AdminController extends Controller
     $data["poster"]     = $this->poster->first();
     $data["poliklinik"] = $this->poliklinik->where("ketersediaan", "tersedia")->count();
     $nilai              = $this->nilai->all();
+    $jumlahNilai        = $this->nilai->count();
     $totalNilai         = 0;
 
     foreach ($nilai as $nilai) {
-      $nilaiPasien      = $this->nilaiPasien->where("nilai_id", $nilai["id"])->get();
-      $totalNilaiPasien = 0;
+      $nilaiPasien        = $this->nilaiPasien->where("nilai_id", $nilai["id"])->get();
+      $jumlahNilaiPasien  = $this->nilaiPasien->where("nilai_id", $nilai["id"])->count();
+      $totalNilaiPasien   = 0;
 
       foreach ($nilaiPasien as $nilaiPasien) {
         $totalNilaiPasien += $nilaiPasien["nilai"];  
       }
 
-      $totalNilaiPasien = $totalNilaiPasien / count($nilaiPasien);
+      $totalNilaiPasien = $totalNilaiPasien / $jumlahNilaiPasien;
       $totalNilai       += $totalNilaiPasien;
     }
 
-    $data["totalRating"]  = $totalNilai / count($nilai);
+    $data["totalRating"]  = $totalNilai / $jumlahNilai;
     return view("admin/index", $data);
   }
 }

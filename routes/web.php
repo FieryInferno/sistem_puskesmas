@@ -38,6 +38,8 @@ Route::middleware('auth')->group(function () {
         Route::put('/edit/{id}', [App\Http\Controllers\NilaiController::class, 'update']);
         Route::delete('/hapus/{id}', [App\Http\Controllers\NilaiController::class, 'destroy']);
       });
+      
+      Route::get('/data_nilai', [App\Http\Controllers\NilaiController::class, 'dataNilai']);
     });
   });
 

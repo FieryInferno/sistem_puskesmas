@@ -70,4 +70,25 @@ class NilaiController extends Controller
 
     return back()->with("status", "Berhasil input penilaian.");
   }
+
+  public function dataNilai()
+  {
+    $nilai          = $this->nilai->all();
+    $data["nilai"]  = [];
+
+    foreach ($nilai as $nilai) {
+      $nilaiPasien        = $this->nilaiPasien->where("nilai_id", $nilai["id"])->get();
+      $jumlahNilaiPasien  = $this->nilaiPasien->where("nilai_id", $nilai["id"])->count();
+      $totalNilaiPasien   = 0;
+
+      foreach ($nilaiPasien as $nilaiPasien) {
+        $totalNilaiPasien += $nilaiPasien["nilai"];  
+      }
+
+      $totalNilaiPasien = $totalNilaiPasien / $jumlahNilaiPasien;
+      $data["nilai"][$nilai["penilaian"]] = $totalNilaiPasien;
+    }
+
+    return view("admin/dataNilai", $data);
+  }
 }

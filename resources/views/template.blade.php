@@ -132,6 +132,11 @@
                     <span class="nav-link-text text-white">Manajemen User</span>
                   </a>
                 </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/admin/data_nilai">
+                    <span class="nav-link-text text-white">Data Nilai</span>
+                  </a>
+                </li>
                 @break
               @case('pasien')
                 <li class="nav-item">
@@ -233,73 +238,17 @@
   <script>
     $(document).ready( function () {
       $('#myTable').DataTable();
-      $('#institusi').DataTable();
-      $('#laboratorium').DataTable();
-
       $('.mySelect2').select2();
-      
-      var rupiah  = document.getElementById('rupiah');
-      var rupiah2 = document.getElementById('rupiah2');
-
-      rupiah.addEventListener('keyup', function(e){
-        rupiah.value = formatRupiah(this.value, 'Rp. ');
-      });
-
-      rupiah2.addEventListener('keyup', function(e){
-        rupiah2.value = formatRupiah(this.value, 'Rp. ');
-      });
-      
-      function formatRupiah(angka, prefix){
-        var number_string = angka.replace(/[^,\d]/g, '').toString(),
-        split   		      = number_string.split(','),
-        sisa     		      = split[0].length % 3,
-        rupiah     		    = split[0].substr(0, sisa),
-        ribuan     		    = split[0].substr(sisa).match(/\d{3}/gi);
-        
-        if(ribuan){
-          separator = sisa ? '.' : '';
-          rupiah    += separator + ribuan.join('.');
-        }
-        
-        rupiah  = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
-        return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
-      }
     });
-
-    function number_format(number, decimals, dec_point, thousands_sep) {
-      // *     example: number_format(1234.56, 2, ',', ' ');
-      // *     return: '1 234,56'
-      number = (number + '').replace(',', '').replace(' ', '');
-      var n = !isFinite(+number) ? 0 : +number,
-        prec = !isFinite(+decimals) ? 0 : Math.abs(decimals),
-        sep = (typeof thousands_sep === 'undefined') ? ',' : thousands_sep,
-        dec = (typeof dec_point === 'undefined') ? '.' : dec_point,
-        s = '',
-        toFixedFix = function(n, prec) {
-          var k = Math.pow(10, prec);
-          return '' + Math.round(n * k) / k;
-        };
-      // Fix for IE parseFloat(0.55).toFixed(0) = 0;
-      s = (prec ? toFixedFix(n, prec) : '' + Math.round(n)).split('.');
-      if (s[0].length > 3) {
-        s[0] = s[0].replace(/\B(?=(?:\d{3})+(?!\d))/g, sep);
-      }
-      if ((s[1] || '').length < prec) {
-        s[1] = s[1] || '';
-        s[1] += new Array(prec - s[1].length + 1).join('0');
-      }
-      return s.join(dec);
-    }
-
+    
     <?php
-      if (isset($data_maintenance)) { ?>
-
+      if (isset($nilai)) { ?>
         var bulan   = [];
         var jumlah  = [];
         <?php 
-        foreach ($data_maintenance as $key => $value) { ?>
+        foreach ($nilai as $key => $value) { ?>
           bulan.push('<?= $key; ?>');
-          jumlah.push('<?= $value; ?>');
+          jumlah.push('<?= round($value); ?>');
         <?php } ?>
 
         const dataMaintenance = {
@@ -342,207 +291,13 @@
               legend: {
                 display: false
               },
-              title: {
-                display: true,
-                text: 'Total Maintenance'
-              }
             },
           },
         };
         
-        var myBarChart = new Chart(document.getElementById("myBarChartMaintenance"), configMaintenance);
-      <?php }
-      
-      if (isset($data_pengadaan)) { ?>
-        var bulan   = [];
-        var jumlah  = [];
-        <?php 
-        foreach ($data_pengadaan as $key => $value) { ?>
-          bulan.push('<?= $key; ?>');
-          jumlah.push('<?= $value; ?>');
-        <?php } ?>
-
-        const dataPengadaan = {
-          labels: bulan,
-          datasets: [{
-            data: jumlah,
-            backgroundColor: [
-              'rgba(255, 99, 132, 0.2)',
-              'rgba(255, 159, 64, 0.2)',
-              'rgba(255, 205, 86, 0.2)',
-              'rgba(75, 192, 192, 0.2)',
-              'rgba(54, 162, 235, 0.2)',
-              'rgba(153, 102, 255, 0.2)',
-              'rgba(201, 203, 207, 0.2)'
-            ],
-            borderColor: [
-              'rgb(255, 99, 132)',
-              'rgb(255, 159, 64)',
-              'rgb(255, 205, 86)',
-              'rgb(75, 192, 192)',
-              'rgb(54, 162, 235)',
-              'rgb(153, 102, 255)',
-              'rgb(201, 203, 207)'
-            ],
-            borderWidth: 1
-          }]
-        };
-
-        const configPengadaan = {
-          type: 'bar',
-          data: dataPengadaan,
-          options: {
-            scales: {
-              y: {
-                beginAtZero: true
-              }
-            },
-            responsive: true,
-            plugins: {
-              legend: {
-                display: false
-              },
-              title: {
-                display: true,
-                text: 'Total Pengadaan'
-              }
-            },
-          },
-        };
-        
-        var myBarChartPengadaan = new Chart(document.getElementById("myBarChart"), configPengadaan);
+        var myBarChart = new Chart(document.getElementById("dataNilai"), configMaintenance);
       <?php }
     ?>
-
-
-    //-------------
-    //- PIE CHART -
-    //-------------
-    // Get context with jQuery - using jQuery's .get() method.
-    <?php
-      if (isset($institusi) && isset($laboratorium)) { ?>
-        const data = {
-          labels: ["Institusi", "Laboratorium"],
-          datasets: [{
-            data: [<?= $institusi; ?>, <?= $laboratorium; ?>],
-            backgroundColor: [
-              "#f56954",
-              "#00a65a"
-            ],
-            hoverOffset: 4
-          }]
-        };
-
-        const config = {
-          type: 'pie',
-          data: data,
-          options: {
-            responsive: true,
-            plugins: {
-              legend: {
-                position: 'top',
-              },
-              title: {
-                display: true,
-                text: 'Jumlah Barang Fakultas'
-              },
-            }
-          },
-        };
-
-        var myChart = new Chart(
-          document.getElementById('pieChart'),
-          config
-        );
-      <?php }
-      
-      if (isset($biayaPengadaan)) { ?>
-        const data = {
-          labels: ["Institusi", "Laboratorium"],
-          datasets: [{
-            data: [<?= $biayaPengadaan['institusi']; ?>, <?= $biayaPengadaan['laboratorium']; ?>],
-            backgroundColor: [
-              "#f56954",
-              "#00a65a"
-            ],
-            hoverOffset: 4
-          }]
-        };
-
-        const config = {
-          type: 'pie',
-          data: data,
-          options: {
-            responsive: true,
-            plugins: {
-              legend: {
-                position: 'top',
-              },
-              title: {
-                display: true,
-                text: 'Total Biaya Pengadaan'
-              },
-            }
-          },
-        };
-
-        var myChart = new Chart(
-          document.getElementById('biayaPengadaan'),
-          config
-        );
-      <?php }
-      
-    if (isset($biayaMaintenance)) { ?>
-        const dataBiayaMaintenance = {
-          labels: ["Institusi", "Laboratorium"],
-          datasets: [{
-            data: [<?= $biayaMaintenance['institusi']; ?>, <?= $biayaMaintenance['laboratorium']; ?>],
-            backgroundColor: [
-              "#f56954",
-              "#00a65a"
-            ],
-            hoverOffset: 4
-          }]
-        };
-
-        const configBiayaMaintenance = {
-          type: 'pie',
-          data: dataBiayaMaintenance,
-          options: {
-            responsive: true,
-            plugins: {
-              legend: {
-                position: 'top',
-              },
-              title: {
-                display: true,
-                text: 'Total Biaya Maintenance'
-              },
-            }
-          },
-        };
-
-        var myChartBiayaMaintenance = new Chart(
-          document.getElementById('biayaMaintenance'),
-          configBiayaMaintenance
-        );
-      <?php }
-    ?>
-    
-
-    function isiAsalBarang(data) {
-      $.ajax({
-        url   : '/aset/asal_barang',
-        type  : 'post',
-        data  : {
-          _token  : "{{ csrf_token() }}",
-          id_aset : data.value
-        }, 
-        success : function(result){
-          $('#asal_barang').val(result.lokasi);
-        }
-      });
-    }
   </script>
 </body>
 
