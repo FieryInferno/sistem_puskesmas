@@ -137,7 +137,7 @@
                 @break
               @case('pasien')
                 <li class="nav-item">
-                  <a class="nav-link" href="/laboran/data_aset">
+                  <a class="nav-link" href="/pasien/poliklinik">
                     <span class="nav-link-text text-white">Poliklinik</span>
                   </a>
                 </li>

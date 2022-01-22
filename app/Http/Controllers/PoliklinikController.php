@@ -18,7 +18,7 @@ class PoliklinikController extends Controller
   public function index()
   {
     $data["poliklinik"] = $this->poliklinik->all();
-    return view("admin/poliklinik/index", $data);
+    return view("poliklinik", $data);
   }
   
   public function create()
