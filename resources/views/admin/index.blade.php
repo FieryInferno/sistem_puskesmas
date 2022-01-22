@@ -50,7 +50,7 @@
       <div class="card">
         <div class="card-body text-center">
           Rating<br>
-          <h1>4/5</h1>
+          <h1>{{ $totalRating }}/5</h1>
           Beri rating <a href="#" data-toggle="modal" data-target="#cetakAntrian">Disini</a>
         </div>
       </div>
