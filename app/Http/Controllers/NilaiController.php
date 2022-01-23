@@ -19,7 +19,26 @@ class NilaiController extends Controller
 
   public function index()
   {
-    $data["nilai"] = $this->nilai->all();
+    $nilai  = $this->nilai->all();
+
+    foreach ($nilai as $nilai) {
+      $data["penilaian"][$nilai["id"]]["penilaian"] = $nilai["penilaian"];
+      $nilaiPasien        = $this->nilaiPasien->where("nilai_id", $nilai["id"])->get();
+      $jumlahNilaiPasien  = $this->nilaiPasien->where("nilai_id", $nilai["id"])->count();
+      $totalNilaiPasien   = 0;
+
+      if ($jumlahNilaiPasien > 0) {
+        foreach ($nilaiPasien as $nilaiPasien) {
+          $totalNilaiPasien += $nilaiPasien["nilai"];  
+        }
+  
+        $totalNilaiPasien = $totalNilaiPasien / $jumlahNilaiPasien;
+      } else {
+        $totalNilaiPasien = $totalNilaiPasien / 1;
+      }
+      
+      $data["penilaian"][$nilai["id"]]["nilai"] = round($totalNilaiPasien);
+    }
 
     switch (auth()->user()->role) {
       case 'admin':
@@ -81,11 +100,16 @@ class NilaiController extends Controller
       $jumlahNilaiPasien  = $this->nilaiPasien->where("nilai_id", $nilai["id"])->count();
       $totalNilaiPasien   = 0;
 
-      foreach ($nilaiPasien as $nilaiPasien) {
-        $totalNilaiPasien += $nilaiPasien["nilai"];  
+      if ($jumlahNilaiPasien > 0) {
+        foreach ($nilaiPasien as $nilaiPasien) {
+          $totalNilaiPasien += $nilaiPasien["nilai"];  
+        }
+  
+        $totalNilaiPasien = $totalNilaiPasien / $jumlahNilaiPasien;
+      } else {
+        $totalNilaiPasien = $totalNilaiPasien / 1;
       }
-
-      $totalNilaiPasien = $totalNilaiPasien / $jumlahNilaiPasien;
+      
       $data["nilai"][$nilai["penilaian"]] = $totalNilaiPasien;
     }
 

@@ -45,23 +45,24 @@
           </button>
         </div>
       @endif
-      @foreach ($nilai as $nilai)
+      @foreach ($penilaian as $key  => $value)
         <div class="row">
           <div class="col-9">
-            {{ $nilai->penilaian }}<br>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star"></span>
-            <span class="fa fa-star"></span>
+            {{ $value["penilaian"] }}<br>
+            @for ($i = 0; $i < $value["nilai"]; $i++)
+              <span class="fa fa-star checked"></span>
+            @endfor
+            @for ($i = 0; $i < (5 - $value["nilai"]); $i++)
+              <span class="fa fa-star"></span>
+            @endfor
           </div>
           <div class="col-3">
             <div class="row">
               <div class="col-3">
-                <a href="#" class="btn btn-success mb-3 btn-sm" data-toggle="modal" data-target="#edit{{ $nilai->id }}">Edit</a>
+                <a href="#" class="btn btn-success mb-3 btn-sm" data-toggle="modal" data-target="#edit{{ $key }}">Edit</a>
 
                 <!-- Modal -->
-                <div class="modal fade" id="edit{{ $nilai->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal fade" id="edit{{ $key }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                   <div class="modal-dialog" role="document">
                     <div class="modal-content">
                       <div class="modal-header">
@@ -70,11 +71,11 @@
                           <span aria-hidden="true">&times;</span>
                         </button>
                       </div>
-                      <form action="/admin/nilai/edit/{{ $nilai->id }}" method="post">
+                      <form action="/admin/nilai/edit/{{ $key }}" method="post">
                         @csrf
                         @method("PUT")
                         <div class="modal-body">
-                          <input type="text" class="form-control" name="penilaian" placeholder="Masukan Penilaian" value="{{ $nilai->penilaian }}">
+                          <input type="text" class="form-control" name="penilaian" placeholder="Masukan Penilaian" value="{{ $value["penilaian"] }}">
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -86,10 +87,10 @@
                 </div>
               </div>
               <div class="col-9 text-right">
-                <a href="#" class="btn btn-danger mb-3 btn-sm" data-toggle="modal" data-target="#hapus{{ $nilai->id }}">Hapus</a>
+                <a href="#" class="btn btn-danger mb-3 btn-sm" data-toggle="modal" data-target="#hapus{{ $key }}">Hapus</a>
 
                 <!-- Modal -->
-                <div class="modal fade" id="hapus{{ $nilai->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal fade" id="hapus{{ $key }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                   <div class="modal-dialog" role="document">
                     <div class="modal-content">
                       <div class="modal-header">
@@ -98,7 +99,7 @@
                           <span aria-hidden="true">&times;</span>
                         </button>
                       </div>
-                      <form action="/admin/nilai/hapus/{{ $nilai->id }}" method="post">
+                      <form action="/admin/nilai/hapus/{{ $key }}" method="post">
                         @csrf
                         @method("DELETE")
                         <div class="modal-body text-left">

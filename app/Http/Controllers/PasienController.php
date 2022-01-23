@@ -31,20 +31,28 @@ class PasienController extends Controller
     $jumlahNilai        = $this->nilai->count();
     $totalNilai         = 0;
 
-    foreach ($nilai as $nilai) {
-      $nilaiPasien        = $this->nilaiPasien->where("nilai_id", $nilai["id"])->get();
-      $jumlahNilaiPasien  = $this->nilaiPasien->where("nilai_id", $nilai["id"])->count();
-      $totalNilaiPasien   = 0;
+    if ($jumlahNilai > 0) {
+      foreach ($nilai as $nilai) {
+        $nilaiPasien        = $this->nilaiPasien->where("nilai_id", $nilai["id"])->get();
+        $jumlahNilaiPasien  = $this->nilaiPasien->where("nilai_id", $nilai["id"])->count();
+        $totalNilaiPasien   = 0;
 
-      foreach ($nilaiPasien as $nilaiPasien) {
-        $totalNilaiPasien += $nilaiPasien["nilai"];  
+        if ($jumlahNilaiPasien > 0) {
+          foreach ($nilaiPasien as $nilaiPasien) {
+            $totalNilaiPasien += $nilaiPasien["nilai"];  
+          }
+    
+          $totalNilaiPasien = $totalNilaiPasien / $jumlahNilaiPasien;
+        } else {
+          $totalNilaiPasien = $totalNilaiPasien / 1;
+        }
+        $totalNilai       += $totalNilaiPasien;
       }
-
-      $totalNilaiPasien = $totalNilaiPasien / $jumlahNilaiPasien;
-      $totalNilai       += $totalNilaiPasien;
+  
+      $data["totalRating"]  = $totalNilai / $jumlahNilai;
+    } else {
+      $data["totalRating"]  = $totalNilai / 1;
     }
-
-    $data["totalRating"]  = $totalNilai / $jumlahNilai;
     return view("pasien/index", $data);
   }
 }
