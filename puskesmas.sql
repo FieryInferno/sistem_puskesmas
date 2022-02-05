@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 19, 2022 at 03:03 AM
+-- Generation Time: Feb 05, 2022 at 06:29 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.0.13
 
@@ -61,7 +61,52 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (5, '2022_01_17_232311_add_role_to_user_table', 2),
 (6, '2022_01_18_155048_edit_table_user', 3),
 (7, '2022_01_18_163647_create_polikliniks_table', 4),
-(8, '2022_01_19_012106_create_posters_table', 5);
+(8, '2022_01_19_012106_create_posters_table', 5),
+(9, '2022_01_19_042808_create_nilais_table', 6),
+(10, '2022_01_22_150701_create_nilai_pasiens_table', 7);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `nilai`
+--
+
+CREATE TABLE `nilai` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `penilaian` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `nilai`
+--
+
+INSERT INTO `nilai` (`id`, `penilaian`, `created_at`, `updated_at`) VALUES
+(4, 'Persyaratan', '2022-01-23 06:23:17', '2022-01-23 06:23:17');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `nilai_pasien`
+--
+
+CREATE TABLE `nilai_pasien` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `pasien_id` bigint(20) UNSIGNED NOT NULL,
+  `nilai_id` bigint(20) UNSIGNED NOT NULL,
+  `nilai` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `nilai_pasien`
+--
+
+INSERT INTO `nilai_pasien` (`id`, `pasien_id`, `nilai_id`, `nilai`, `created_at`, `updated_at`) VALUES
+(4, 3, 4, 5, '2022-02-02 21:03:17', '2022-02-02 21:03:17'),
+(5, 3, 4, 3, '2022-02-02 21:03:28', '2022-02-02 21:03:28');
 
 -- --------------------------------------------------------
 
@@ -109,6 +154,13 @@ CREATE TABLE `poliklinik` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `poliklinik`
+--
+
+INSERT INTO `poliklinik` (`id`, `no_sip`, `poli`, `dokter`, `ketersediaan`, `created_at`, `updated_at`) VALUES
+(2, '123123', 'Politeknik Negeri Subang', 'Rian Piarna', 'tidak_tersedia', '2022-01-19 09:20:41', '2022-01-19 09:21:41');
+
 -- --------------------------------------------------------
 
 --
@@ -155,7 +207,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `username`, `password`, `remember_token`, `created_at`, `updated_at`, `role`, `no_induk`, `nama`, `jabatan`, `no_telp`) VALUES
 (1, 'admin', '$2y$10$DSW9TAeXQFLmBlPbSv/2pOuow73ibU741GJQQOhfOdGEzPsccA8NC', NULL, NULL, '2022-01-18 09:19:27', 'admin', '12312', 'admin', 'admin', '123123'),
-(3, 'bagassetia', '$2y$10$dFvomF77k5rj1xkAeyAhB.aUx5yq2ykHGOkODkOqmZsSuzeam5jsC', NULL, '2022-01-18 08:55:41', '2022-01-18 08:55:41', 'admin', '213123', 'M. Bagas Setia', 'admin', '123123');
+(3, 'bagassetia', '$2y$10$dFvomF77k5rj1xkAeyAhB.aUx5yq2ykHGOkODkOqmZsSuzeam5jsC', NULL, '2022-01-18 08:55:41', '2022-01-18 08:55:41', 'pasien', '213123', 'M. Bagas Setia', 'admin', '123123');
 
 --
 -- Indexes for dumped tables
@@ -173,6 +225,20 @@ ALTER TABLE `failed_jobs`
 --
 ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `nilai`
+--
+ALTER TABLE `nilai`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `nilai_pasien`
+--
+ALTER TABLE `nilai_pasien`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `nilai_pasien_pasien_id_foreign` (`pasien_id`),
+  ADD KEY `nilai_pasien_nilai_id_foreign` (`nilai_id`);
 
 --
 -- Indexes for table `password_resets`
@@ -221,7 +287,19 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT for table `nilai`
+--
+ALTER TABLE `nilai`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `nilai_pasien`
+--
+ALTER TABLE `nilai_pasien`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -233,7 +311,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `poliklinik`
 --
 ALTER TABLE `poliklinik`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `poster`
@@ -246,6 +324,17 @@ ALTER TABLE `poster`
 --
 ALTER TABLE `users`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `nilai_pasien`
+--
+ALTER TABLE `nilai_pasien`
+  ADD CONSTRAINT `nilai_pasien_nilai_id_foreign` FOREIGN KEY (`nilai_id`) REFERENCES `nilai` (`id`),
+  ADD CONSTRAINT `nilai_pasien_pasien_id_foreign` FOREIGN KEY (`pasien_id`) REFERENCES `users` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

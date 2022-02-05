@@ -98,7 +98,7 @@
 <body>
   <!-- Sidenav -->
   <nav class="sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-light bg-white" id="sidenav-main">
-    <div class="scrollbar-inner" style="height: 647px;margin-bottom: 0px;margin-right: 0px;max-height: none;background-color: #128612;">
+    <div class="scrollbar-inner" style="margin-bottom: 0px;margin-right: 0px;max-height: none;background-color: #128612;">
       <!-- Brand -->
       <div class="sidenav-header  align-items-center">
         <a class="navbar-brand" href="javascript:void(0)" style="padding: 0.1rem;background-color: #a7a9ad;">
@@ -163,13 +163,13 @@
       <div class="container-fluid">
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <div class="row">
-            <div class="col-10">
+            <div class="col-xl-9 col-lg-10">
               <div class="col-12"><h1>SISTEM INFORMASI PELAYANAN KESEHATAN</h1></div>
               <div class="col-12"><h2 style="color: #3d8446;">PUSKESMAS NAGRAK</h2></div>
               <div class="col-12"><h3 style="color: #3d8446;">Jl. Sinagar-Munjul, Nagrak Utara, Kec. Nagrak, Sukabumi Regency, Jawa Barat 43356</h3></div>
             </div>
-            <div class="col-2">
-              <img src="{{ asset('img/logo0.png') }}" alt="" class="fill-current text-gray-500" style="width:10rem;">
+            <div class="col-xl-3 col-lg-2">
+              <img src="{{ asset('img/logo0.png') }}" alt="" class="fill-current text-gray-500" style="width:100%;">
             </div>
           </div>
         </div>

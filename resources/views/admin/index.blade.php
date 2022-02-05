@@ -94,7 +94,7 @@
     </div>
     <div class="card-body text-center">
       @if ($poster)
-        <img src="{{ asset('img/' . $poster['poster']) }}" class="fill-current text-gray-500" alt="">
+        <img src="{{ asset('img/' . $poster['poster']) }}" class="fill-current text-gray-500" alt="" width="100%">
       @endif
     </div>
   </div>
