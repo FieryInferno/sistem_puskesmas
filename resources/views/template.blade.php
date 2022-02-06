@@ -97,15 +97,15 @@
 
 <body>
   <!-- Sidenav -->
-  <nav class="sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-light bg-white" id="sidenav-main">
+  <nav class="sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-light bg-white" id="sidenav-main" style="padding-bottom: 0px">
     <div class="scrollbar-inner" style="margin-bottom: 0px;margin-right: 0px;max-height: none;background-color: #128612;">
       <!-- Brand -->
       <div class="sidenav-header  align-items-center">
         <a class="navbar-brand" href="javascript:void(0)" style="padding: 0.1rem;background-color: #a7a9ad;">
-          <img src="{{ asset('img') }}/logo.png" class="navbar-brand-img" alt="..." width="100%" height="100%" style="max-height: 9rem;">
+          <img src="{{ asset('img') }}/logo.png" class="navbar-brand-img" alt="..." width="100%" height="100%" style="max-height: 13rem;">
         </a>
       </div>
-      <div class="navbar-inner" style="margin-top: 4rem;background-color: #128612;">
+      <div class="navbar-inner" style="margin-top: 8rem;background-color: #128612;">
         <!-- Collapse -->
         <div class="collapse navbar-collapse" id="sidenav-collapse-main">
           <!-- Nav items -->
