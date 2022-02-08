@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 05, 2022 at 06:29 AM
+-- Generation Time: Feb 08, 2022 at 08:16 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.0.13
 
@@ -20,6 +20,26 @@ SET time_zone = "+00:00";
 --
 -- Database: `puskesmas`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `antrian`
+--
+
+CREATE TABLE `antrian` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `no_antrian` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `antrian`
+--
+
+INSERT INTO `antrian` (`id`, `no_antrian`, `created_at`, `updated_at`) VALUES
+(1, 2, NULL, '2022-02-08 00:15:16');
 
 -- --------------------------------------------------------
 
@@ -63,7 +83,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (7, '2022_01_18_163647_create_polikliniks_table', 4),
 (8, '2022_01_19_012106_create_posters_table', 5),
 (9, '2022_01_19_042808_create_nilais_table', 6),
-(10, '2022_01_22_150701_create_nilai_pasiens_table', 7);
+(10, '2022_01_22_150701_create_nilai_pasiens_table', 7),
+(11, '2022_02_08_064045_create_antrians_table', 8);
 
 -- --------------------------------------------------------
 
@@ -214,6 +235,12 @@ INSERT INTO `users` (`id`, `username`, `password`, `remember_token`, `created_at
 --
 
 --
+-- Indexes for table `antrian`
+--
+ALTER TABLE `antrian`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -278,6 +305,12 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `antrian`
+--
+ALTER TABLE `antrian`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -287,7 +320,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `nilai`

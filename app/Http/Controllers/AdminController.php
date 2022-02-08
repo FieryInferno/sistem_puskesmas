@@ -7,6 +7,7 @@ use App\Models\Poster;
 use App\Models\Poliklinik;
 use App\Models\Nilai;
 use App\Models\NilaiPasien;
+use App\Models\Antrian;
 
 class AdminController extends Controller
 {
@@ -14,6 +15,7 @@ class AdminController extends Controller
   private $poliklinik;
   private $nilai;
   private $nilaiPasien;
+  private $antrian;
 
   public function __construct()
   {
@@ -21,6 +23,7 @@ class AdminController extends Controller
     $this->poliklinik   = new Poliklinik;
     $this->nilai        = new Nilai;
     $this->nilaiPasien  = new NilaiPasien;
+    $this->antrian      = new Antrian;
   }
 
   public function index()
@@ -53,6 +56,17 @@ class AdminController extends Controller
     } else {
       $data["totalRating"]  = $totalNilai / 1;
     }
+
+    $data["antrian"]  = $this->antrian->first();
     return view("admin/index", $data);
+  }
+
+  public function cetakAntrian()
+  {
+    $antrian = $this->antrian->first();
+    $antrian->no_antrian += 1;
+    $antrian->save();
+
+    return response()->json([ 'status' => 'success' ]);
   }
 }

@@ -8,7 +8,7 @@
           <div class="row">
             <div class="col-8">
               Antrian Saat Ini<br>
-              <h1>10</h1>
+              <h1>{{ $antrian->no_antrian }}</h1>
               Cetak Antrian <a href="#" data-toggle="modal" data-target="#cetakAntrian">Disini</a>
               <!-- Modal -->
               <div class="modal fade" id="cetakAntrian" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -27,11 +27,11 @@
                     <div class="modal-body">
                       No. antrian anda
                       <div class="text-center">
-                        <h1>10</h1>
+                        <h1>{{ $antrian->no_antrian }}</h1>
                       </div>
                     </div>
                     <div class="modal-footer">
-                      Silahkan tunggu hingga nomor anda dipanggil. <a href="">Print</a>
+                      Silahkan tunggu hingga nomor anda dipanggil. <a href="#" onClick="printAntrian()">Print</a>
                     </div>
                   </div>
                 </div>

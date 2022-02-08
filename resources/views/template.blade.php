@@ -298,6 +298,24 @@
         var myBarChart = new Chart(document.getElementById("dataNilai"), configMaintenance);
       <?php }
     ?>
+
+    const printAntrian = () => {
+      $.ajax({
+        url   : '/antrian/cetak',
+        type  : 'post',
+        data  : { _token  : "{{ csrf_token() }}" }, 
+        success : function(result){
+          const printContents = document.getElementById("printArea").innerHTML;
+          const originalContents = document.body.innerHTML;
+
+          document.body.innerHTML = printContents;
+
+          window.print();
+
+          document.body.innerHTML = originalContents;
+        }
+      });
+    }
   </script>
 </body>
 

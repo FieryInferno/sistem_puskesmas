@@ -62,6 +62,8 @@ Route::middleware('auth')->group(function () {
       });
     });
   });
+
+  Route::post("/antrian/cetak", [App\Http\Controllers\AdminController::class, "cetakAntrian"]);
 });
 
 require __DIR__.'/auth.php';
