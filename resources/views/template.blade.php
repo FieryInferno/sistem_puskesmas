@@ -305,7 +305,7 @@
         type  : 'post',
         data  : { _token  : "{{ csrf_token() }}" }, 
         success : function(result){
-          const printContents = document.getElementById("printArea").innerHTML;
+          const printContents = document.getElementById('cetakAntrian').innerHTML;
           const originalContents = document.body.innerHTML;
 
           document.body.innerHTML = printContents;

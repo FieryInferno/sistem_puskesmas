@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Poliklinik;
+use App\Models\Antrian;
 
 class PoliklinikController extends Controller
 {
@@ -17,8 +18,10 @@ class PoliklinikController extends Controller
 
   public function index()
   {
-    $data["poliklinik"] = $this->poliklinik->all();
-    return view("poliklinik", $data);
+    return view("poliklinik", [
+      'poliklinik' => $this->poliklinik->all(),
+      'antrian' => Antrian::first(),
+    ]);
   }
   
   public function create()
