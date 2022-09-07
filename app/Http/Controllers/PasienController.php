@@ -7,6 +7,7 @@ use App\Models\Poster;
 use App\Models\Poliklinik;
 use App\Models\Nilai;
 use App\Models\NilaiPasien;
+use App\Models\Antrian;
 
 class PasienController extends Controller
 {
@@ -53,6 +54,9 @@ class PasienController extends Controller
     } else {
       $data["totalRating"]  = $totalNilai / 1;
     }
+
+    $data["antrian"]  = Antrian::first();
+
     return view("pasien/index", $data);
   }
 }
