@@ -30,6 +30,28 @@
                 <option value="tidak_tersedia">Tidak Tersedia</option>
               </select>
             </div>
+            <div class="form-group">
+              <label class="form-control-label">Hari Jadwal Piket</label>
+              <select name="hari_jadwal_piket" class="mySelect2" required>
+                <option selected disabled></option>
+                <option value="senin">Senin</option>
+                <option value="selasa">Selasa</option>
+                <option value="rabu">Rabu</option>
+                <option value="kamis">Kamis</option>
+                <option value="jumat">Jumat</option>
+                <option value="sabtu">Sabtu</option>
+                <option value="minggu">Minggu</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-control-label">Jam Piket</label>
+              <input
+                type="time"
+                class="form-control"
+                name="jam_piket"
+                required
+              >
+            </div>
           </div>
         </div>
       </div>

@@ -26,6 +26,8 @@
               <th scope="col">Poli</th>
               <th scope="col">Dokter</th>
               <th scope="col">Ketersediaan</th>
+              <th scope="col">Hari Jadwal Piket</th>
+              <th scope="col">Jam Piket</th>
               @if (auth()->user()->role == "admin")
                 <th scope="col">Aksi</th>
               @endif
@@ -37,9 +39,13 @@
               <tr>
                 <td>{{ $no++ }}</td>
                 <td>{{ $poliklinik->no_sip }}</td>
-                <td>{{ $poliklinik->poli }}</td>
+                <td>
+                  <a href="{{ auth()->user()->role === 'admin' ? url('admin/poliklinik/list/' . $poliklinik->id) : '#' }}">{{ $poliklinik->poli }}</a>
+                </td>
                 <td>{{ $poliklinik->dokter }}</td>
                 <td>{{ $poliklinik->ketersediaan == "tersedia" ? "Tersedia" : "Tidak Tersedia" }}</td>
+                <td>{{ $poliklinik->hari_jadwal_piket }}</td>
+                <td>{{ $poliklinik->jam_piket }}</td>
                 @if (auth()->user()->role == "admin")
                   <td>
                     <a href="/admin/poliklinik/edit/{{ $poliklinik->id }}" class="btn btn-success btn-sm">Edit</a>

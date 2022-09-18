@@ -36,12 +36,18 @@
             </div>
             <div class="form-group">
               <label class="form-control-label" for="input-username">Role</label>
-              <select name="role" id="role" class="mySelect2" required>
+              <select
+                name="role"
+                onChange="changeRole(this)"
+                class="mySelect2"
+                required
+              >
                 <option selected disabled></option>
                 <option value="admin">Admin</option>
                 <option value="pasien">Pasien</option>
               </select>
             </div>
+            <div id="poliklinik"></div>
           </div>
         </div>
       </div>

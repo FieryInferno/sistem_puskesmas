@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Poliklinik;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -28,6 +29,15 @@ class UserController extends Controller
   
   public function store(Request $request)
   {
+    $request->validate([
+      'no_induk'  => 'required',
+      'nama'      => 'required',
+      'username'  => 'required',
+      'jabatan'   => 'required',
+      'no_telp'   => 'required',
+      'role'      => 'required',
+    ]);
+
     $this->user->no_induk = $request->no_induk;
     $this->user->nama     = $request->nama;
     $this->user->username = $request->username;
@@ -35,33 +45,48 @@ class UserController extends Controller
     $this->user->jabatan  = $request->jabatan;
     $this->user->no_telp  = $request->no_telp;
     $this->user->role     = $request->role;
+    if ($request->poliklinik) {
+      $this->user->poliklinik = $request->poliklinik;
+      $this->user->status = $request->status;
+    }
 
     $this->user->save();
 
     return redirect('/admin/user')->with('status', 'Berhasil tambah user.');
   }
   
-  public function edit($id)
+  public function edit(User $user)
   {
-    $user = $this->user->find($id);
+    $user['poli'] = Poliklinik::all();
     return view('admin/user/edit', $user);
   }
 
-  public function update(Request $request, $id)
+  public function update(Request $request, User $user)
   {
-    $user_baru = $this->user->find($id);
+    $request->validate([
+      'no_induk'  => 'required',
+      'nama'      => 'required',
+      'username'  => 'required',
+      'jabatan'   => 'required',
+      'no_telp'   => 'required',
+      'role'      => 'required',
+    ]);
 
-    $user_baru->no_induk = $request->no_induk;
-    $user_baru->nama     = $request->nama;
-    $user_baru->username = $request->username;
+    $user->no_induk = $request->no_induk;
+    $user->nama     = $request->nama;
+    $user->username = $request->username;
     if ($request->password) {
-      $user_baru->password = Hash::make($request->password);
+      $user->password = Hash::make($request->password);
     }
-    $user_baru->jabatan  = $request->jabatan;
-    $user_baru->no_telp  = $request->no_telp;
-    $user_baru->role     = $request->role;
+    $user->jabatan  = $request->jabatan;
+    $user->no_telp  = $request->no_telp;
+    $user->role     = $request->role;
+    if ($request->poliklinik) {
+      $user->poliklinik = $request->poliklinik;
+      $user->status = $request->status;
+    }
 
-    $user_baru->save();
+    $user->save();
 
     return redirect('/admin/user')->with('status', 'Berhasil edit user.');
   }
@@ -73,5 +98,12 @@ class UserController extends Controller
     $user->delete();
     
     return redirect('/admin/user')->with('status', 'Berhasil hapus user.');
+  }
+
+  public function updateStatus(Request $request, User $user)
+  {
+    // dd($user);
+    $user->update($request->all());
+    return redirect()->back();
   }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Nilai;
 use App\Models\NilaiPasien;
+use App\Models\Masukan;
 
 class NilaiController extends Controller
 {
@@ -87,17 +88,29 @@ class NilaiController extends Controller
       $this->nilaiPasien->save();
     }
 
+    if ($request->masukan) {
+      Masukan::create([
+        'pasien_id' => auth()->user()->id,
+        'masukan'   => $request->masukan,
+      ]);
+    }
+
     return back()->with("status", "Berhasil input penilaian.");
   }
 
-  public function dataNilai()
+  public function dataNilai(Request $request)
   {
     $nilai          = $this->nilai->all();
     $data["nilai"]  = [];
 
     foreach ($nilai as $nilai) {
-      $nilaiPasien        = $this->nilaiPasien->where("nilai_id", $nilai["id"])->get();
-      $jumlahNilaiPasien  = $this->nilaiPasien->where("nilai_id", $nilai["id"])->count();
+      if ($request->query('bulan') && $request->query('tahun')) {
+        $nilaiPasien        = $this->nilaiPasien->where("nilai_id", $nilai["id"])->whereMonth('created_at', $request->query('bulan'))->whereYear('created_at', $request->query('tahun'))->get();
+        $jumlahNilaiPasien  = $this->nilaiPasien->where("nilai_id", $nilai["id"])->whereMonth('created_at', $request->query('bulan'))->whereYear('created_at', $request->query('tahun'))->count();
+      } else {
+        $nilaiPasien        = $this->nilaiPasien->where("nilai_id", $nilai["id"])->get();
+        $jumlahNilaiPasien  = $this->nilaiPasien->where("nilai_id", $nilai["id"])->count();
+      }
       $totalNilaiPasien   = 0;
 
       if ($jumlahNilaiPasien > 0) {
@@ -112,6 +125,8 @@ class NilaiController extends Controller
       
       $data["nilai"][$nilai["penilaian"]] = $totalNilaiPasien;
     }
+
+    $data['masukan'] = Masukan::all();
 
     return view("admin/dataNilai", $data);
   }

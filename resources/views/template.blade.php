@@ -307,14 +307,50 @@
         success : function(result){
           const printContents = document.getElementById('cetakAntrian').innerHTML;
           const originalContents = document.body.innerHTML;
-
           document.body.innerHTML = printContents;
-
           window.print();
-
           document.body.innerHTML = originalContents;
         }
       });
+    }
+
+    const changeRole = (data) => {
+      if (data.value === 'pasien') {
+        $.ajax({
+          url   : '/getPoliklinik',
+          type  : 'get',
+          data  : { _token  : "{{ csrf_token() }}" }, 
+          success : function(result){
+            let poliklinik = `
+              <div class="form-group">
+                <label class="form-control-label" for="input-username">Poliklinik</label>
+                <select name="poliklinik" class="mySelect2" required>
+                  <option selected disabled></option>`;
+
+            result.forEach(poli => {
+              poliklinik += `<option value="${poli.id}">${poli.poli}</option>`;
+            });
+
+            poliklinik += `
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-control-label">Status</label>
+                <select name="status" class="mySelect2" required>
+                  <option value="Antrian">Antrian</option>
+                  <option value="Tindakan">Tindakan</option>
+                  <option value="Selesai">Selesai</option>
+                </select>
+              </div>`;
+            $('#poliklinik').html(poliklinik);
+            $('.mySelect2').select2();
+          }
+        });
+      }
+    }
+
+    const afterPrint = () => {
+      location.reload();
     }
   </script>
 </body>

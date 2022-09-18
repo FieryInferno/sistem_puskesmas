@@ -31,6 +31,29 @@
                 <option value="tidak_tersedia" <?= $ketersediaan == "tidak_tersedia" ? "selected" : ""; ?>>Tidak Tersedia</option>
               </select>
             </div>
+            <div class="form-group">
+              <label class="form-control-label">Hari Jadwal Piket</label>
+              <select name="hari_jadwal_piket" class="mySelect2" required>
+                <option selected disabled></option>
+                <option value="senin" <?= $hari_jadwal_piket == "senin" ? "selected" : ""; ?>>Senin</option>
+                <option value="selasa" <?= $hari_jadwal_piket == "selasa" ? "selected" : ""; ?>>Selasa</option>
+                <option value="rabu" <?= $hari_jadwal_piket == "rabu" ? "selected" : ""; ?>>Rabu</option>
+                <option value="kamis" <?= $hari_jadwal_piket == "kamis" ? "selected" : ""; ?>>Kamis</option>
+                <option value="jumat" <?= $hari_jadwal_piket == "jumat" ? "selected" : ""; ?>>Jumat</option>
+                <option value="sabtu" <?= $hari_jadwal_piket == "sabtu" ? "selected" : ""; ?>>Sabtu</option>
+                <option value="minggu" <?= $hari_jadwal_piket == "minggu" ? "selected" : ""; ?>>Minggu</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-control-label">Jam Piket</label>
+              <input
+                type="time"
+                class="form-control"
+                name="jam_piket"
+                required
+                value="{{ $jam_piket }}"
+              >
+            </div>
           </div>
         </div>
       </div>
