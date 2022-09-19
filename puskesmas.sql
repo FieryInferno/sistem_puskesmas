@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 19, 2022 at 02:14 AM
+-- Generation Time: Sep 19, 2022 at 04:42 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.0.13
 
@@ -143,14 +143,6 @@ CREATE TABLE `nilai_pasien` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `nilai_pasien`
---
-
-INSERT INTO `nilai_pasien` (`id`, `pasien_id`, `nilai_id`, `nilai`, `created_at`, `updated_at`) VALUES
-(4, 3, 4, 5, '2022-02-02 21:03:17', '2022-02-02 21:03:17'),
-(5, 3, 4, 3, '2022-02-02 21:03:28', '2022-02-02 21:03:28');
-
 -- --------------------------------------------------------
 
 --
@@ -255,7 +247,6 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `username`, `password`, `remember_token`, `created_at`, `updated_at`, `role`, `no_induk`, `nama`, `jabatan`, `no_telp`, `poliklinik`, `status`) VALUES
 (1, 'admin', '$2y$10$DSW9TAeXQFLmBlPbSv/2pOuow73ibU741GJQQOhfOdGEzPsccA8NC', NULL, NULL, '2022-01-18 09:19:27', 'admin', '12312', 'admin', 'admin', '123123', NULL, NULL),
-(3, 'bagassetia', '$2y$10$dFvomF77k5rj1xkAeyAhB.aUx5yq2ykHGOkODkOqmZsSuzeam5jsC', NULL, '2022-01-18 08:55:41', '2022-09-18 16:10:01', 'pasien', '213123', 'M. Bagas Setia', 'admin', '123123', 2, 'Selesai'),
 (5, 'deviratna', '$2y$10$OPVzmZY5xLmPHf4P4c3OdOisblrEbHYttHawYlk8B64zoIsNJJ1iO', NULL, '2022-09-06 16:48:10', '2022-09-18 16:10:52', 'pasien', '10104019', 'Devi Ratna Daniati', 'pasien', '085723853284', 3, 'Selesai'),
 (6, 'gabriel', '$2y$10$61WpNKQbLPbUz7Rds2npeOQLvXn/OkEUO.D.UonewCFxpmdeFhEOu', NULL, '2022-09-18 07:57:37', '2022-09-18 15:40:13', 'pasien', '234134', 'Gabriel Jesus', 'Striker', '085723853284', 3, 'Antrian');
 
@@ -300,8 +291,8 @@ ALTER TABLE `nilai`
 --
 ALTER TABLE `nilai_pasien`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `nilai_pasien_pasien_id_foreign` (`pasien_id`),
-  ADD KEY `nilai_pasien_nilai_id_foreign` (`nilai_id`);
+  ADD KEY `nilai_pasien_nilai_id_foreign` (`nilai_id`),
+  ADD KEY `nilai_pasien_pasien_id_foreign` (`pasien_id`);
 
 --
 -- Indexes for table `password_resets`
@@ -398,7 +389,7 @@ ALTER TABLE `poster`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Constraints for dumped tables
@@ -415,7 +406,7 @@ ALTER TABLE `masukans`
 --
 ALTER TABLE `nilai_pasien`
   ADD CONSTRAINT `nilai_pasien_nilai_id_foreign` FOREIGN KEY (`nilai_id`) REFERENCES `nilai` (`id`),
-  ADD CONSTRAINT `nilai_pasien_pasien_id_foreign` FOREIGN KEY (`pasien_id`) REFERENCES `users` (`id`);
+  ADD CONSTRAINT `nilai_pasien_pasien_id_foreign` FOREIGN KEY (`pasien_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
