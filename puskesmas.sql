@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 19, 2022 at 01:56 AM
+-- Generation Time: Sep 19, 2022 at 02:14 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.0.13
 
@@ -39,7 +39,7 @@ CREATE TABLE `antrian` (
 --
 
 INSERT INTO `antrian` (`id`, `no_antrian`, `created_at`, `updated_at`) VALUES
-(1, 28, NULL, '2022-09-18 16:53:55');
+(1, 1, NULL, '2022-09-18 17:13:40');
 
 -- --------------------------------------------------------
 

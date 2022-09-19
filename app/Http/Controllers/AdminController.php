@@ -61,12 +61,12 @@ class AdminController extends Controller
     return view("admin/index", $data);
   }
 
-  public function cetakAntrian()
+  public function print()
   {
     $antrian = $this->antrian->first();
+    $no = $this->antrian->first();
     $antrian->no_antrian += 1;
     $antrian->save();
-
-    return response()->json([ 'status' => 'success' ]);
+    return view('admin.cetakAntrian', ['antrian' => $no]);
   }
 }

@@ -29,7 +29,7 @@
                   </div>
                 </div>
                 <div class="modal-footer">
-                  Silahkan tunggu hingga nomor anda dipanggil. <a href="#" onClick="printAntrian()">Print</a>
+                  Silahkan tunggu hingga nomor anda dipanggil. <a href="{{ url('antrian/cetak') }}" target="_blank">Print</a>
                 </div>
               </div>
             </div>

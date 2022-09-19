@@ -299,21 +299,6 @@
       <?php }
     ?>
 
-    const printAntrian = () => {
-      $.ajax({
-        url   : '/antrian/cetak',
-        type  : 'post',
-        data  : { _token  : "{{ csrf_token() }}" }, 
-        success : function(result){
-          const printContents = document.getElementById('cetakAntrian').innerHTML;
-          const originalContents = document.body.innerHTML;
-          document.body.innerHTML = printContents;
-          window.print();
-          document.body.innerHTML = originalContents;
-        }
-      });
-    }
-
     const changeRole = (data) => {
       if (data.value === 'pasien') {
         $.ajax({
