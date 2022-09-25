@@ -43,7 +43,6 @@ Route::middleware('auth')->group(function () {
       
       Route::get('/data_nilai', [App\Http\Controllers\NilaiController::class, 'dataNilai']);
     });
-    Route::get('/antrian/cetak', [App\Http\Controllers\AdminController::class, 'print']);
   });
 
   Route::middleware('is_pasien')->group(function () {
@@ -66,6 +65,7 @@ Route::middleware('auth')->group(function () {
     });
   });
 
+  Route::get('/antrian/cetak', [App\Http\Controllers\AdminController::class, 'print']);
   Route::post("/antrian/cetak", [App\Http\Controllers\AdminController::class, "cetakAntrian"]);
   Route::get('getPoliklinik', [App\Http\Controllers\PoliklinikController::class, 'getPoliklinik']);
 });

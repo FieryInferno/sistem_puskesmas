@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 19, 2022 at 04:42 PM
+-- Generation Time: Sep 25, 2022 at 02:19 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.0.13
 
@@ -39,7 +39,7 @@ CREATE TABLE `antrian` (
 --
 
 INSERT INTO `antrian` (`id`, `no_antrian`, `created_at`, `updated_at`) VALUES
-(1, 1, NULL, '2022-09-18 17:13:40');
+(1, 3, NULL, '2022-09-25 05:16:11');
 
 -- --------------------------------------------------------
 
@@ -247,8 +247,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `username`, `password`, `remember_token`, `created_at`, `updated_at`, `role`, `no_induk`, `nama`, `jabatan`, `no_telp`, `poliklinik`, `status`) VALUES
 (1, 'admin', '$2y$10$DSW9TAeXQFLmBlPbSv/2pOuow73ibU741GJQQOhfOdGEzPsccA8NC', NULL, NULL, '2022-01-18 09:19:27', 'admin', '12312', 'admin', 'admin', '123123', NULL, NULL),
-(5, 'deviratna', '$2y$10$OPVzmZY5xLmPHf4P4c3OdOisblrEbHYttHawYlk8B64zoIsNJJ1iO', NULL, '2022-09-06 16:48:10', '2022-09-18 16:10:52', 'pasien', '10104019', 'Devi Ratna Daniati', 'pasien', '085723853284', 3, 'Selesai'),
-(6, 'gabriel', '$2y$10$61WpNKQbLPbUz7Rds2npeOQLvXn/OkEUO.D.UonewCFxpmdeFhEOu', NULL, '2022-09-18 07:57:37', '2022-09-18 15:40:13', 'pasien', '234134', 'Gabriel Jesus', 'Striker', '085723853284', 3, 'Antrian');
+(5, 'deviratna', '$2y$10$OPVzmZY5xLmPHf4P4c3OdOisblrEbHYttHawYlk8B64zoIsNJJ1iO', NULL, '2022-09-06 16:48:10', '2022-09-18 16:10:52', 'pasien', '10104019', 'Devi Ratna Daniati', 'pasien', '085723853284', 3, 'Selesai');
 
 --
 -- Indexes for dumped tables
@@ -291,8 +290,8 @@ ALTER TABLE `nilai`
 --
 ALTER TABLE `nilai_pasien`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `nilai_pasien_nilai_id_foreign` (`nilai_id`),
-  ADD KEY `nilai_pasien_pasien_id_foreign` (`pasien_id`);
+  ADD KEY `nilai_pasien_pasien_id_foreign` (`pasien_id`),
+  ADD KEY `nilai_pasien_nilai_id_foreign` (`nilai_id`);
 
 --
 -- Indexes for table `password_resets`
@@ -347,7 +346,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `masukans`
 --
 ALTER TABLE `masukans`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -365,7 +364,7 @@ ALTER TABLE `nilai`
 -- AUTO_INCREMENT for table `nilai_pasien`
 --
 ALTER TABLE `nilai_pasien`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -399,13 +398,13 @@ ALTER TABLE `users`
 -- Constraints for table `masukans`
 --
 ALTER TABLE `masukans`
-  ADD CONSTRAINT `masukans_pasien_id_foreign` FOREIGN KEY (`pasien_id`) REFERENCES `users` (`id`);
+  ADD CONSTRAINT `masukans_pasien_id_foreign` FOREIGN KEY (`pasien_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `nilai_pasien`
 --
 ALTER TABLE `nilai_pasien`
-  ADD CONSTRAINT `nilai_pasien_nilai_id_foreign` FOREIGN KEY (`nilai_id`) REFERENCES `nilai` (`id`),
+  ADD CONSTRAINT `nilai_pasien_nilai_id_foreign` FOREIGN KEY (`nilai_id`) REFERENCES `nilai` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `nilai_pasien_pasien_id_foreign` FOREIGN KEY (`pasien_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
