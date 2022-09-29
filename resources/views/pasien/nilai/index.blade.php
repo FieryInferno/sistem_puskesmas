@@ -20,8 +20,13 @@
                 </button>
               </div>
             @endif
+            @if (session('error'))
+              <div class="alert alert-danger">
+                {{ session('error') }}
+              </div>
+            @endif
             @foreach ($penilaian as $key => $value)
-              {{ $value["penilaian"] }}<br>
+              {{ $value["penilaian"] }}<br/>
               <div class="rating">
                 <label>
                   <input type="radio" name="nilai[{{ $key }}]" value="1"/>
@@ -53,7 +58,7 @@
                   <span class="icon">★</span>
                   <span class="icon">★</span>
                 </label>
-              </div>
+              </div><br/>
             @endforeach
           </div>
           <div class="card-footer">

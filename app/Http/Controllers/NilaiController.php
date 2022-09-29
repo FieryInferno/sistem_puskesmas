@@ -81,21 +81,30 @@ class NilaiController extends Controller
 
   public function storeRatingPasien(Request $request)
   {
-    foreach ($request->nilai as $key => $value) {
-      $this->nilaiPasien->pasien_id = auth()->user()->id;
-      $this->nilaiPasien->nilai_id  = $key;
-      $this->nilaiPasien->nilai     = $value;
-      $this->nilaiPasien->save();
-    }
+    if (count($request->nilai) === count($this->nilai->all())) {
+      $data = [];
+      $i = 0;
 
-    if ($request->masukan) {
-      Masukan::create([
-        'pasien_id' => auth()->user()->id,
-        'masukan'   => $request->masukan,
-      ]);
-    }
+      foreach ($request->nilai as $key => $value) {
+        $data[$i]['pasien_id'] = auth()->user()->id;
+        $data[$i]['nilai_id']  = $key;
+        $data[$i]['nilai']     = $value;
+        $i++;
+      }
 
-    return back()->with("status", "Berhasil input penilaian.");
+      $this->nilaiPasien->insert($data);
+  
+      if ($request->masukan) {
+        Masukan::create([
+          'pasien_id' => auth()->user()->id,
+          'masukan'   => $request->masukan,
+        ]);
+      }
+
+      return back()->with("status", "Berhasil input penilaian.");
+    } else {
+      return back()->with('error', 'Nilai harus diisi semua');
+    }
   }
 
   public function dataNilai(Request $request)

@@ -73,6 +73,26 @@
                 </div>
               @endif
             </div>
+            <div class="form-group">
+              <label class="form-control-label">Jenis Kelamin</label>
+              <select name="jenis_kelamin" class="mySelect2" required>
+                <option selected disabled></option>
+                <option value="l" <?= $jenis_kelamin == 'l' ? 'selected' : ''; ?>>Laki-Laki</option>
+                <option value="p" <?= $jenis_kelamin == 'p' ? 'selected' : ''; ?>>Perempuan</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-control-label">Pendidikan</label>
+              <select name="pendidikan" class="mySelect2" required>
+                <option selected disabled></option>
+                <option value="sd" <?= $pendidikan == 'sd' ? 'selected' : ''; ?>>SD</option>
+                <option value="smp" <?= $pendidikan == 'smp' ? 'selected' : ''; ?>>SMP</option>
+                <option value="sma" <?= $pendidikan == 'sma' ? 'selected' : ''; ?>>SMA</option>
+                <option value="d1d3" <?= $pendidikan == 'd1d3' ? 'selected' : ''; ?>>D1 - D3</option>
+                <option value="d4s1" <?= $pendidikan == 'd4s1' ? 'selected' : ''; ?>>D4 - S1</option>
+                <option value="s2" <?= $pendidikan == 's2' ? 'selected' : ''; ?>>> S2</option>
+              </select>
+            </div>
           </div>
         </div>
       </div>

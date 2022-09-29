@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 25, 2022 at 02:19 PM
+-- Generation Time: Sep 29, 2022 at 03:09 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.0.13
 
@@ -39,7 +39,7 @@ CREATE TABLE `antrian` (
 --
 
 INSERT INTO `antrian` (`id`, `no_antrian`, `created_at`, `updated_at`) VALUES
-(1, 3, NULL, '2022-09-25 05:16:11');
+(1, 5, NULL, '2022-09-25 22:30:42');
 
 -- --------------------------------------------------------
 
@@ -76,7 +76,8 @@ CREATE TABLE `masukans` (
 --
 
 INSERT INTO `masukans` (`id`, `pasien_id`, `masukan`, `created_at`, `updated_at`) VALUES
-(1, 5, 'masukan dan saran', '2022-09-18 02:03:01', '2022-09-18 02:03:01');
+(3, 12, 'untuk kursi menunggunya mohon ditambahkan lagi', '2022-09-25 22:33:03', '2022-09-25 22:33:03'),
+(4, 14, 'untuk sarana kursi tempat menunggu bisa ditambahkahkan', '2022-09-26 03:10:36', '2022-09-26 03:10:36');
 
 -- --------------------------------------------------------
 
@@ -126,7 +127,14 @@ CREATE TABLE `nilai` (
 --
 
 INSERT INTO `nilai` (`id`, `penilaian`, `created_at`, `updated_at`) VALUES
-(4, 'Persyaratan', '2022-01-23 06:23:17', '2022-01-23 06:23:17');
+(4, 'Persyaratan', '2022-01-23 06:23:17', '2022-01-23 06:23:17'),
+(6, 'Prosedur', '2022-09-25 22:24:44', '2022-09-25 22:24:44'),
+(7, 'Waktu Pelayanan', '2022-09-25 22:24:52', '2022-09-25 22:24:52'),
+(8, 'Biaya/Tarif', '2022-09-25 22:25:00', '2022-09-25 22:25:00'),
+(9, 'Produk Spesifikasi Jenis Pelayanan', '2022-09-25 22:25:10', '2022-09-25 22:25:10'),
+(10, 'Kompetensi Pelaksana', '2022-09-25 22:25:24', '2022-09-25 22:25:24'),
+(11, 'Perilaku Pelaksana', '2022-09-25 22:25:37', '2022-09-25 22:25:37'),
+(12, 'Kualitas Sarana dan Prasana', '2022-09-25 22:25:47', '2022-09-25 22:25:47');
 
 -- --------------------------------------------------------
 
@@ -142,6 +150,36 @@ CREATE TABLE `nilai_pasien` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `nilai_pasien`
+--
+
+INSERT INTO `nilai_pasien` (`id`, `pasien_id`, `nilai_id`, `nilai`, `created_at`, `updated_at`) VALUES
+(17, 14, 4, 5, NULL, NULL),
+(18, 14, 6, 5, NULL, NULL),
+(19, 14, 7, 5, NULL, NULL),
+(20, 14, 8, 5, NULL, NULL),
+(21, 14, 9, 5, NULL, NULL),
+(22, 14, 10, 5, NULL, NULL),
+(23, 14, 11, 5, NULL, NULL),
+(24, 14, 12, 5, NULL, NULL),
+(26, 12, 4, 3, NULL, NULL),
+(27, 12, 6, 4, NULL, NULL),
+(28, 12, 7, 5, NULL, NULL),
+(29, 12, 8, 4, NULL, NULL),
+(30, 12, 9, 3, NULL, NULL),
+(31, 12, 10, 3, NULL, NULL),
+(32, 12, 11, 4, NULL, NULL),
+(33, 12, 12, 4, NULL, NULL),
+(34, 13, 4, 2, NULL, NULL),
+(35, 13, 6, 3, NULL, NULL),
+(36, 13, 7, 4, NULL, NULL),
+(37, 13, 8, 5, NULL, NULL),
+(38, 13, 9, 4, NULL, NULL),
+(39, 13, 10, 5, NULL, NULL),
+(40, 13, 11, 3, NULL, NULL),
+(41, 13, 12, 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -196,8 +234,10 @@ CREATE TABLE `poliklinik` (
 --
 
 INSERT INTO `poliklinik` (`id`, `no_sip`, `poli`, `dokter`, `ketersediaan`, `hari_jadwal_piket`, `jam_piket`, `created_at`, `updated_at`) VALUES
-(2, '123123', 'Poliklinik Sagalaherang', 'Rian Piarna', 'tidak_tersedia', 'selasa', '21:00:00', '2022-01-19 09:20:41', '2022-09-18 00:03:02'),
-(3, '321301', 'Poli Umum', 'Rizaldi', 'tersedia', 'senin', '07:00:00', '2022-09-18 00:20:19', '2022-09-18 00:20:19');
+(3, '321301', 'Poli Umum', 'Rizaldi', 'tersedia', 'selasa', '09:00:00', '2022-09-18 00:20:19', '2022-09-25 22:21:45'),
+(4, '12345', 'Poli Umum', 'Achmad Iskandar', 'tersedia', 'senin', '10:00:00', '2022-09-25 22:21:07', '2022-09-25 22:21:19'),
+(5, '12345', 'Poli Gigi', 'Fahrul Abdullah Hudri', 'tersedia', 'kamis', '11:30:00', '2022-09-25 22:22:32', '2022-09-25 22:22:32'),
+(6, '12345', 'Poli Kesehatan Ibu dan Anak', 'Sinta', 'tidak_tersedia', 'rabu', '08:30:00', '2022-09-25 22:23:13', '2022-09-25 22:23:13');
 
 -- --------------------------------------------------------
 
@@ -238,16 +278,21 @@ CREATE TABLE `users` (
   `jabatan` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `no_telp` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `poliklinik` bigint(20) UNSIGNED DEFAULT NULL,
-  `status` enum('Antrian','Tindakan','Selesai') COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `status` enum('Antrian','Tindakan','Selesai') COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `jenis_kelamin` enum('l','p') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `pendidikan` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `password`, `remember_token`, `created_at`, `updated_at`, `role`, `no_induk`, `nama`, `jabatan`, `no_telp`, `poliklinik`, `status`) VALUES
-(1, 'admin', '$2y$10$DSW9TAeXQFLmBlPbSv/2pOuow73ibU741GJQQOhfOdGEzPsccA8NC', NULL, NULL, '2022-01-18 09:19:27', 'admin', '12312', 'admin', 'admin', '123123', NULL, NULL),
-(5, 'deviratna', '$2y$10$OPVzmZY5xLmPHf4P4c3OdOisblrEbHYttHawYlk8B64zoIsNJJ1iO', NULL, '2022-09-06 16:48:10', '2022-09-18 16:10:52', 'pasien', '10104019', 'Devi Ratna Daniati', 'pasien', '085723853284', 3, 'Selesai');
+INSERT INTO `users` (`id`, `username`, `password`, `remember_token`, `created_at`, `updated_at`, `role`, `no_induk`, `nama`, `jabatan`, `no_telp`, `poliklinik`, `status`, `jenis_kelamin`, `pendidikan`) VALUES
+(1, 'admin', '$2y$10$DSW9TAeXQFLmBlPbSv/2pOuow73ibU741GJQQOhfOdGEzPsccA8NC', NULL, NULL, '2022-01-18 09:19:27', 'admin', '12312', 'admin', 'admin', '123123', NULL, NULL, 'l', 'd1d3'),
+(12, 'Fadhel', '$2y$10$DSW9TAeXQFLmBlPbSv/2pOuow73ibU741GJQQOhfOdGEzPsccA8NC', NULL, '2022-09-25 22:27:37', '2022-09-25 22:27:37', 'pasien', '12345', 'Fadhel', 'Pasien', '085759415782', 4, 'Selesai', 'l', 'sd'),
+(13, 'Astra', '$2y$10$DSW9TAeXQFLmBlPbSv/2pOuow73ibU741GJQQOhfOdGEzPsccA8NC', NULL, '2022-09-25 22:29:14', '2022-09-25 22:29:14', 'pasien', '12345', 'Astra', 'Pasien', '082121900965', 5, 'Selesai', 'l', 'smp'),
+(14, 'difan', '$2y$10$DSW9TAeXQFLmBlPbSv/2pOuow73ibU741GJQQOhfOdGEzPsccA8NC', NULL, '2022-09-26 03:00:16', '2022-09-26 03:02:05', 'pasien', '12345', 'difan', 'Pasien', '085965412563', 3, 'Selesai', 'p', 'sma'),
+(15, 'deviratna', '$2y$10$uCRHFLXUECzoLL.752SGZuCmBR3JCtgG8ALZ3YigiPATc6RZWRKWK', NULL, '2022-09-28 07:51:01', '2022-09-28 18:03:07', 'pasien', '1232', 'Devi Ratna Daniati', 'test', '123123', 3, 'Antrian', 'p', 's2');
 
 --
 -- Indexes for dumped tables
@@ -346,7 +391,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `masukans`
 --
 ALTER TABLE `masukans`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -358,13 +403,13 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `nilai`
 --
 ALTER TABLE `nilai`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `nilai_pasien`
 --
 ALTER TABLE `nilai_pasien`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -376,7 +421,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `poliklinik`
 --
 ALTER TABLE `poliklinik`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `poster`
@@ -388,7 +433,7 @@ ALTER TABLE `poster`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- Constraints for dumped tables

@@ -36,6 +36,8 @@ class UserController extends Controller
       'jabatan'   => 'required',
       'no_telp'   => 'required',
       'role'      => 'required',
+      'jenis_kelamin' => 'required',
+      'pendidikan' => 'required',
     ]);
 
     $this->user->no_induk = $request->no_induk;
@@ -49,6 +51,8 @@ class UserController extends Controller
       $this->user->poliklinik = $request->poliklinik;
       $this->user->status = $request->status;
     }
+    $this->user->jenis_kelamin = $request->jenis_kelamin;
+    $this->user->pendidikan = $request->pendidikan;
 
     $this->user->save();
 
@@ -70,6 +74,8 @@ class UserController extends Controller
       'jabatan'   => 'required',
       'no_telp'   => 'required',
       'role'      => 'required',
+      'jenis_kelamin' => 'required',
+      'pendidikan' => 'required',
     ]);
 
     $user->no_induk = $request->no_induk;
@@ -85,6 +91,8 @@ class UserController extends Controller
       $user->poliklinik = $request->poliklinik;
       $user->status = $request->status;
     }
+    $user->jenis_kelamin = $request->jenis_kelamin;
+    $user->pendidikan = $request->pendidikan;
 
     $user->save();
 

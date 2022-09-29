@@ -55,6 +55,33 @@
         </div>
       </div>
     </div>
+    <div class="col-4">
+      <div class="card">
+        <div class="card-body text-center">
+          Nilai IKM<br>
+          <h1>{{ round($totalRating) }}</h1>
+        </div>
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="card">
+        <div class="card-body">
+          <div class="text-center">Responden</div>
+          <div>Jumlah: {{ count($responden) }} Orang (LK: {{ $laki }}, PR: {{ $perempuan }})</div>
+          <div>
+            Pendidikan:
+            <ul>
+              <li>SD: {{ $sd }}</li>
+              <li>SMP: {{ $smp }}</li>
+              <li>SMA: {{ $sma }}</li>
+              <li>D1 - D3: {{ $d1d3 }}</li>
+              <li>D4 - S1: {{ $d4s1 }}</li>
+              <li>> S2: {{ $s2 }}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
   <div class="card">
     <div class="card-header">

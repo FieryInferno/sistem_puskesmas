@@ -32,7 +32,30 @@ class AdminController extends Controller
     $data["poliklinik"] = $this->poliklinik->where("ketersediaan", "tersedia")->count();
     $nilai              = $this->nilai->all();
     $jumlahNilai        = $this->nilai->count();
+    $data['responden']  = $this->nilaiPasien->groupBy('pasien_id')->get();
+    $data['laki'] = $data['responden']->filter(function ($value, $key) {
+      return $value->pasien->jenis_kelamin === 'l';
+    })->count();
+    $data['perempuan'] = count($data['responden']) - $data['laki'];
     $totalNilai         = 0;
+    $data['sd'] = $data['responden']->filter(function ($value, $key) {
+      return $value->pasien->pendidikan === 'sd';
+    })->count();
+    $data['smp'] = $data['responden']->filter(function ($value, $key) {
+      return $value->pasien->pendidikan === 'smp';
+    })->count();
+    $data['sma'] = $data['responden']->filter(function ($value, $key) {
+      return $value->pasien->pendidikan === 'sma';
+    })->count();
+    $data['d1d3'] = $data['responden']->filter(function ($value, $key) {
+      return $value->pasien->pendidikan === 'd1d3';
+    })->count();
+    $data['d4s1'] = $data['responden']->filter(function ($value, $key) {
+      return $value->pasien->pendidikan === 'd4s1';
+    })->count();
+    $data['s2'] = $data['responden']->filter(function ($value, $key) {
+      return $value->pasien->pendidikan === 's2';
+    })->count();
 
     if ($jumlahNilai > 0) {
       foreach ($nilai as $nilai) {

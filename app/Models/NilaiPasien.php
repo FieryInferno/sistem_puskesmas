@@ -10,4 +10,9 @@ class NilaiPasien extends Model
     use HasFactory;
 
   protected $table  = "nilai_pasien";
+
+  public function pasien()
+  {
+    return $this->hasOne(User::class, 'id', 'pasien_id');
+  }
 }

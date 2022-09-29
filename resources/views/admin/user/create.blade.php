@@ -48,6 +48,26 @@
               </select>
             </div>
             <div id="poliklinik"></div>
+            <div class="form-group">
+              <label class="form-control-label">Jenis Kelamin</label>
+              <select name="jenis_kelamin" class="mySelect2" required>
+                <option selected disabled></option>
+                <option value="l">Laki-Laki</option>
+                <option value="p">Perempuan</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-control-label">Pendidikan</label>
+              <select name="pendidikan" class="mySelect2" required>
+                <option selected disabled></option>
+                <option value="sd">SD</option>
+                <option value="smp">SMP</option>
+                <option value="sma">SMA</option>
+                <option value="d1d3">D1 - D3</option>
+                <option value="d4s1">D4 - S1</option>
+                <option value="s2">> S2</option>
+              </select>
+            </div>
           </div>
         </div>
       </div>
